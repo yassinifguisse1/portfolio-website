@@ -8,12 +8,12 @@ export function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="flex h-100dvh w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 border-2 border-red-500"
+      className="flex h-100dvh w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 "
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-4 transition-all duration-700 md:mb-16 ${
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
@@ -23,7 +23,7 @@ export function ServicesSection() {
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ What i bring to the table</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
+        <div className="grid gap-3 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
               title: "Software Development",

@@ -9,10 +9,10 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16 border-2 border-red-500"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl border-2 border-blue-500">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Left side - Story */}
           <div>
@@ -21,7 +21,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
                 isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
               }`}
             >
-              <h2 className="mb-3 font-sans text-3xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
+              <h2 className="mb-3 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground md:mb-4 md:text-6xl lg:text-7xl">
                 Turning complex
                 <br />
                 problems into
@@ -36,17 +36,17 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
               }`}
               style={{ transitionDelay: "200ms" }}
             >
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
+              <p className="max-w-md text-sm leading-relaxed text-foreground/70 md:text-lg">
                 Software Developer & Computer Engineering Grad (Poland) focused on reliable code, clear architecture, and features that make a difference.
               </p>
-              <p className="max-w-md text-sm leading-relaxed text-foreground/90 md:text-lg">
+              <p className="max-w-md text-sm leading-relaxed text-foreground/70 md:text-lg">
                 I build end-to-end solutions from scoping to designing, coding, and shipping with fast feedback loops and measurable impact.
               </p>
             </div>
           </div>
 
           {/* Right side - Stats with creative layout */}
-          <div className="flex flex-col justify-center space-y-6 md:space-y-12">
+          <div className="flex flex-col justify-center space-y-3 md:space-y-12">
             {[
               { value: "8+", label: "Projects", sublabel: "Completed & shipped", direction: "right" },
               { value: "1.5", label: "Years", sublabel: "Of coding experience", direction: "left" },
@@ -69,7 +69,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
                     maxWidth: i % 2 === 0 ? "100%" : "85%",
                   }}
                 >
-                  <div className="text-3xl font-light text-foreground md:text-6xl lg:text-7xl">{stat.value}</div>
+                  <div className="text-2xl font-light text-foreground md:text-6xl lg:text-7xl">{stat.value}</div>
                   <div>
                     <div className="font-sans text-base font-light text-foreground md:text-xl">{stat.label}</div>
                     <div className="font-mono text-xs text-foreground/60">{stat.sublabel}</div>
