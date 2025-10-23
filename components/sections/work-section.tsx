@@ -8,10 +8,10 @@ export function WorkSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 border-2 border-red-500"
+      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 "
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' , height: '100dvh' }}
     >
-      <div className="mx-auto w-full max-w-7xl  border-2 border-blue-500 mb-6 md:mb-0">
+      <div className="mx-auto w-full max-w-7xl mb-6 md:mb-0">
         <div
           className={`mb-0 transition-all duration-700 md:mb-16 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"

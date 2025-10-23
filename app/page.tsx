@@ -274,8 +274,8 @@ export default function Home() {
         }}
       >
         {/* Hero Section */}
-        <section className="flex 100dvh w-screen shrink-0 flex-col justify-end px-6 pb-20 pt-24 md:px-12 md:pb-24 border-2 border-red-500" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 5rem)' }}>
-          <div className="max-w-3xl border-2 border-blue-500 p">
+        <section className="flex 100dvh w-screen shrink-0 flex-col justify-end px-6 pb-20 pt-24 md:px-12 md:pb-24" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 5rem)' }}>
+          <div className="max-w-3xlp">
             <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
               <p className="font-mono text-xs text-foreground/90">Software Engineer</p>
             </div>
