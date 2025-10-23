@@ -179,7 +179,7 @@ export default function Home() {
   }, [currentSection])
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-background" >
+    <main className="relative h-screen w-full overflow-hidden bg-background"  style={{ height: '100dvh' }}>
       <CustomCursor />
       <GrainOverlay />
 
