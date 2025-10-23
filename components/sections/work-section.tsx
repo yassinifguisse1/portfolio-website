@@ -13,7 +13,7 @@ export function WorkSection() {
     >
       <div className="mx-auto w-full max-w-7xl  border-2 border-blue-500 mb-6 md:mb-0">
         <div
-          className={`mb-10 transition-all duration-700 md:mb-16 ${
+          className={`mb-0 transition-all duration-700 md:mb-16 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
@@ -23,7 +23,7 @@ export function WorkSection() {
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Featured projects</p>
         </div>
 
-        <div className="space-y-2 md:space-y-8">
+        <div className="space-y-0 md:space-y-8">
           {[
             {
               number: "01",
@@ -32,6 +32,7 @@ export function WorkSection() {
               year: "2024",
               direction: "left",
               description: "AI-driven SEO content platform empowering businesses & bloggers to create high-impact articles in minutes.",
+              descriptionMobile: "AI-driven SEO content platform.",
               technologies: "Next.js, Node.js, React, Tailwind CSS, Supabase, Prisma, Stripe, Vercel",
               link: "https://dadofseo.com/"
             },
@@ -42,6 +43,7 @@ export function WorkSection() {
               year: "2025",
               direction: "right",
               description: "Premium car rental platform with real-time booking system and fleet management.",
+              descriptionMobile: "Premium car rental platform .",
               technologies: "Next.js, Tailwind CSS, GSAP, Resend, Vercel",
               link: "https://amseelcars.com/"
             },
@@ -52,6 +54,7 @@ export function WorkSection() {
               year: "2025",
               direction: "left",
               description: "Professional software development company website with comprehensive digital solutions showcase.",
+              descriptionMobile: "Professional software development company ",
               technologies: "Next.js, Tailwind CSS, Resend, Vercel",
               link: "https://www.itagroupe.com/"
             },
@@ -76,6 +79,7 @@ function ProjectCard({
     year: string; 
     direction: string;
     description: string;
+    descriptionMobile?: string;
     technologies: string;
     link: string;
   }
@@ -112,7 +116,10 @@ function ProjectCard({
             {project.title}
           </h3>
           <p className="font-mono text-xs text-foreground/50 md:text-sm mb-2">{project.category}</p>
-          <p className="font-mono text-xs text-foreground/40 md:text-sm max-w-md">{project.description}</p>
+          <p className="font-mono text-xs text-foreground/40 md:text-sm max-w-md">
+            <span className="hidden md:block">{project.description}</span>
+            <span className="block md:hidden">{project.descriptionMobile || project.description}</span>
+          </p>
           <p className="font-mono text-xs text-foreground/30 md:text-sm mt-1">{project.technologies}</p>
         </div>
       </div>
