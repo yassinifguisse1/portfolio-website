@@ -263,7 +263,7 @@ export default function Home() {
       <div
         ref={scrollContainerRef}
         data-scroll-container
-        className={`relative z-10 flex h-screen overflow-x-auto overflow-y-hidden transition-opacity duration-700 ${
+        className={`relative z-10 flex 100dvh overflow-x-auto overflow-y-hidden transition-opacity duration-700   ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
         style={{ 

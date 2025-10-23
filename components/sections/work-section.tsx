@@ -8,22 +8,22 @@ export function WorkSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-100dvh w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 border-2 border-red-500"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}
     >
-      <div className="mx-auto w-full max-w-7xl">
+      <div className="mx-auto w-full max-w-7xl  border-2 border-blue-500 mb-6 md:mb-0">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-10 transition-all duration-700 md:mb-16 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="mb-2 font-sans text-4xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             My Work
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Featured projects</p>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
+        <div className="space-y-2 md:space-y-8">
           {[
             {
               number: "01",

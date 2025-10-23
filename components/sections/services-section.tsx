@@ -8,7 +8,7 @@ export function ServicesSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex h-100dvh w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 border-2 border-red-500"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}
     >
       <div className="mx-auto w-full max-w-7xl">
@@ -17,7 +17,7 @@ export function ServicesSection() {
             isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
           }`}
         >
-          <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
+          <h2 className="mb-2 font-sans text-4xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
             What I Do
           </h2>
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ What i bring to the table</p>
