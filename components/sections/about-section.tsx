@@ -13,7 +13,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}
     >
       <div className="mx-auto w-full max-w-7xl border-2 border-blue-500">
-        <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
+        <div className="grid gap-4 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Left side - Story */}
           <div>
             <div
