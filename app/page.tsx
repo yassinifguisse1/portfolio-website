@@ -256,6 +256,13 @@ export default function Home() {
               />
             </button>
           ))}
+          <a
+            href="/blog"
+            className="group relative font-sans text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+          >
+            Blog
+            <span className="absolute -bottom-1 left-0 h-px w-0 bg-foreground transition-all duration-300 group-hover:w-full" />
+          </a>
         </div>
 
         <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
