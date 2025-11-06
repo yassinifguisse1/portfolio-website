@@ -78,14 +78,20 @@ function BlogCard({
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
-          {post.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-foreground/20 bg-foreground/5 px-2 py-0.5 font-mono text-xs text-foreground/60"
-            >
-              {tag}
-            </span>
-          ))}
+          {post.tags.slice(0, 3).map((tag) => {
+            // Encode tag for URL - handle special characters like dots
+            const tagSlug = encodeURIComponent(tag.toLowerCase().replace(/\s+/g, "-"))
+            return (
+              <Link
+                key={tag}
+                href={`/blog/tag/${tagSlug}`}
+                className="rounded-full border border-foreground/20 bg-foreground/5 px-2 py-0.5 font-mono text-xs text-foreground/60 transition-all hover:border-foreground/40 hover:bg-foreground/10"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {tag}
+              </Link>
+            )
+          })}
         </div>
 
         <div className="flex items-center gap-2 font-mono text-sm text-foreground/60 transition-colors group-hover:text-foreground/80">
@@ -96,4 +102,3 @@ function BlogCard({
     </Link>
   )
 }
-
