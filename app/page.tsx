@@ -9,6 +9,7 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import Image from "next/image"
 
 export default function Home() {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -228,7 +229,9 @@ export default function Home() {
           className="flex items-center gap-2 transition-transform hover:scale-105"
         >
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-foreground/15 backdrop-blur-md transition-all duration-300 hover:scale-110 hover:bg-foreground/25">
-            <span className="font-sans text-xl font-bold text-foreground">Y</span>
+            <span className="font-sans text-xl font-bold text-foreground">
+              <Image src="/yassinoxLogo.svg" alt="Yassine Ifguisse" width={40} height={40} className="w-10 h-10" />
+            </span>
           </div>
           <div className="flex flex-col items-start">
             <span className="font-sans text-xl font-semibold tracking-tight text-foreground">Yassine</span>
@@ -274,8 +277,8 @@ export default function Home() {
         }}
       >
         {/* Hero Section */}
-        <section className="flex 100dvh w-screen shrink-0 flex-col justify-end px-6 pb-20 pt-24 md:px-12 md:pb-24" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 5rem)' }}>
-          <div className="max-w-3xlp">
+        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-20 pt-24 md:px-12 md:pb-24" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 5rem)' }}>
+          <div className="max-w-3xl">
             <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
               <p className="font-mono text-xs text-foreground/90">Software Engineer</p>
             </div>
