@@ -26,7 +26,9 @@ export const metadata: Metadata = {
     images: ["https://yassinox.site/og-image.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/yassinoxLogo.svg",
+    shortcut: "/yassinoxLogo.svg",
+    apple: "/yassinoxLogo.svg",
   },
   robots: {
     index: true,
