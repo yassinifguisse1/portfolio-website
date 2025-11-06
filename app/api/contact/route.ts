@@ -17,8 +17,8 @@ export async function POST(request: NextRequest) {
 
     // Send email using Resend
     const { data, error } = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', // You can change this to your domain
-      to: ['ifguissey@gmail.com'], // Your email address
+      from: process.env.RESEND_FROM_EMAIL || 'Portfolio Contact <onboarding@resend.dev>',
+      to: [process.env.CONTACT_EMAIL || 'ifguissey@gmail.com'],
       subject: `New Contact Form Message from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
