@@ -9,10 +9,12 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export async function GET(request: Request) {
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   try {
-    const { searchParams } = new URL(request.url)
-    const slug = searchParams.get('slug')
+    const { slug } = await params
 
     if (!slug) {
       return new Response('Missing slug', { status: 400 })

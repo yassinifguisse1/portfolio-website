@@ -132,7 +132,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Article",
+              "@type": "BlogPosting",
               headline: post.title,
               description: post.description,
               author: {
@@ -146,11 +146,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 "@type": "WebPage",
                 "@id": `https://yassinox.site/blog/${post.slug}`,
               },
-              image: `https://yassinox.site/og/${post.slug}.png`,
-              publisher: {
-                "@type": "Person",
-                name: "Yassine Ifguisse",
+              image: {
+                "@type": "ImageObject",
+                url: `https://yassinox.site/og/${post.slug}.png`,
+                width: 1200,
+                height: 630,
               },
+              publisher: {
+                "@type": "Organization",
+                name: "Yassine Ifguisse",
+                url: "https://yassinox.site",
+                logo: {
+                  "@type": "ImageObject",
+                  url: "https://yassinox.site/yassinoxLogo.svg",
+                },
+              },
+              articleSection: post.category,
+              keywords: post.tags.join(", "),
             }),
           }}
         />
@@ -166,19 +178,31 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   "@type": "ListItem",
                   position: 1,
                   name: "Home",
-                  item: "https://yassinox.site",
+                  item: {
+                    "@type": "WebPage",
+                    "@id": "https://yassinox.site",
+                    name: "Home",
+                  },
                 },
                 {
                   "@type": "ListItem",
                   position: 2,
                   name: "Blog",
-                  item: "https://yassinox.site/blog",
+                  item: {
+                    "@type": "WebPage",
+                    "@id": "https://yassinox.site/blog",
+                    name: "Blog",
+                  },
                 },
                 {
                   "@type": "ListItem",
                   position: 3,
                   name: post.title,
-                  item: `https://yassinox.site/blog/${post.slug}`,
+                  item: {
+                    "@type": "WebPage",
+                    "@id": `https://yassinox.site/blog/${post.slug}`,
+                    name: post.title,
+                  },
                 },
               ],
             }),

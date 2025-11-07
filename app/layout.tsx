@@ -55,6 +55,36 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
       </head>
       <body className={`font-sans antialiased`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Yassine Ifguisse",
+              url: "https://yassinox.site",
+              logo: "https://yassinox.site/yassinoxLogo.svg",
+              sameAs: [
+                "https://github.com/yassinifguisse1",
+                "https://www.linkedin.com/in/yassineifguisse/",
+                "https://x.com/YIfguisse775",
+                "https://www.instagram.com/yassine_ifg/",
+              ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Yassine Ifguisse - Portfolio",
+              url: "https://yassinox.site",
+              description: "Software Developer & Computer Engineering Graduate portfolio showcasing modern web applications and development expertise.",
+            }),
+          }}
+        />
         {children}
         <Analytics />
       </body>
