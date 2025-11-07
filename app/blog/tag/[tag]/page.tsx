@@ -41,11 +41,32 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
     }
   }
 
+  const tagUrl = `https://yassinox.site/blog/tag/${tag}`
+
   return {
     title: `${matchedTag} Posts | Yassine Ifguisse Blog`,
     description: `Browse all blog posts tagged with ${matchedTag} on web development, Next.js, React, and TypeScript.`,
     alternates: {
-      canonical: `https://yassinox.site/blog/tag/${tag}`,
+      canonical: tagUrl,
+    },
+    openGraph: {
+      title: `${matchedTag} Posts | Yassine Ifguisse Blog`,
+      description: `Browse all blog posts tagged with ${matchedTag} on web development, Next.js, React, and TypeScript.`,
+      url: tagUrl,
+      type: "website",
+      images: [
+        {
+          url: "https://yassinox.site/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: `${matchedTag} Posts`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${matchedTag} Posts | Yassine Ifguisse Blog`,
+      description: `Browse all blog posts tagged with ${matchedTag} on web development, Next.js, React, and TypeScript.`,
     },
   }
 }
@@ -71,8 +92,35 @@ export default async function TagPage({ params }: TagPageProps) {
     notFound()
   }
 
+  const tagUrl = `https://yassinox.site/blog/tag/${tag}`
+
   return (
     <main className="relative min-h-screen w-full bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: `${matchedTag} Posts`,
+            description: `Browse all blog posts tagged with ${matchedTag} on web development, Next.js, React, and TypeScript.`,
+            url: tagUrl,
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: posts.length,
+              itemListElement: posts.map((post, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                item: {
+                  "@type": "BlogPosting",
+                  headline: post.title,
+                  url: `https://yassinox.site/blog/${post.slug}`,
+                },
+              })),
+            },
+          }),
+        }}
+      />
       <div className="mx-auto w-full max-w-7xl px-6 py-24 md:px-12 md:py-32">
         <Link
           href="/blog"

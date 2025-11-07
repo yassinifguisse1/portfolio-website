@@ -15,9 +15,19 @@ export async function GET() {
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
     ${posts
       .map(
-        (post) => `    <item>
+        (post) => {
+          // Extract first 300 characters of content for description
+          const contentPreview = post.content
+            .replace(/[#*`]/g, '')
+            .replace(/\n+/g, ' ')
+            .trim()
+            .substring(0, 300)
+            .replace(/\s+\S*$/, '') + '...'
+          
+          return `    <item>
       <title><![CDATA[${post.title}]]></title>
       <description><![CDATA[${post.description}]]></description>
+      <content:encoded><![CDATA[${post.content.substring(0, 1000)}...]]></content:encoded>
       <link>${baseUrl}/blog/${post.slug}</link>
       <guid isPermaLink="true">${baseUrl}/blog/${post.slug}</guid>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
@@ -25,6 +35,7 @@ export async function GET() {
       <category><![CDATA[${post.category}]]></category>
       ${post.tags.map((tag) => `<category><![CDATA[${tag}]]></category>`).join('\n      ')}
     </item>`
+        }
       )
       .join('\n')}
   </channel>

@@ -11,6 +11,19 @@ export const metadata: Metadata = {
     description: "Thoughts, tutorials, and insights on web development, Next.js, React, TypeScript, and modern software engineering practices.",
     url: "https://yassinox.site/blog",
     type: "website",
+    images: [
+      {
+        url: "https://yassinox.site/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Yassine Ifguisse Blog",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | Yassine Ifguisse",
+    description: "Thoughts, tutorials, and insights on web development, Next.js, React, TypeScript, and modern software engineering practices.",
   },
 }
 
