@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Calendar, Clock, ArrowLeft, Github, Linkedin, Mail, Instagram } from "lucide-react"
 import { BlogContent } from "@/components/blog-content"
 import { MagneticButton } from "@/components/magnetic-button"
+import Image from "next/image"
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>
@@ -214,29 +215,34 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {(() => {
           // Extract FAQs from content (look for "## Frequently Asked Questions" section)
-          const faqMatch = post.content.match(/##\s*Frequently\s+Asked\s+Questions([\s\S]*?)(?=##|$)/i)
-          if (!faqMatch) return null
+          // Use a more reliable pattern that captures until the next ## heading
+          const faqSectionMatch = post.content.match(/##\s*Frequently\s+Asked\s+Questions\s*\n([\s\S]*?)(?=\n##\s|$)/i)
+          if (!faqSectionMatch) return null
 
-          const faqContent = faqMatch[1]
+          const faqContent = faqSectionMatch[1]
           const faqItems: Array<{ question: string; answer: string }> = []
           
-          // Extract Q&A pairs (### Question followed by answer)
-          // More flexible regex to handle various markdown formats
-          const qaMatches = faqContent.matchAll(/###\s+(.+?)\n\n([\s\S]*?)(?=###|##|$)/g)
-          for (const match of qaMatches) {
-            const question = match[1].trim()
-            // Clean answer: remove markdown formatting, preserve content
-            let answer = match[2]
+          // Extract Q&A pairs - pattern: ### Question followed by answer
+          // Match: ### Question text\n\nAnswer text (until next ### or end)
+          const qaPattern = /###\s+(.+?)\n\n([\s\S]*?)(?=\n###\s|\n##\s|$)/g
+          let qaMatch
+          
+          while ((qaMatch = qaPattern.exec(faqContent)) !== null) {
+            const question = qaMatch[1].trim()
+            let answer = qaMatch[2]
               .trim()
-              .replace(/^\*\*/g, '') // Remove bold at start
-              .replace(/\*\*$/g, '') // Remove bold at end
+              // Remove markdown formatting
+              .replace(/\*\*(.+?)\*\*/g, '$1') // Remove bold
+              .replace(/\*(.+?)\*/g, '$1') // Remove italic
+              .replace(/\[(.+?)\]\(.+?\)/g, '$1') // Remove links, keep text
+              .replace(/`(.+?)`/g, '$1') // Remove code backticks
               .replace(/\n+/g, ' ') // Replace newlines with spaces
               .replace(/\s+/g, ' ') // Normalize whitespace
               .trim()
             
-            // Ensure answer is at least 20 characters and not empty
+            // Ensure answer is at least 20 characters
             if (question && answer && answer.length >= 20) {
-              // Don't truncate - Google prefers full answers (up to reasonable limit)
+              // Limit to 5000 characters (Google's practical limit)
               if (answer.length > 5000) {
                 answer = answer.substring(0, 4997) + '...'
               }
@@ -304,7 +310,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <div className="my-12 rounded-lg border border-foreground/10 bg-foreground/5 p-6 backdrop-blur-sm">
           <div className="mb-4 flex items-center gap-4">
             <div className="flex h-16 w-16 items-center justify-center rounded-full border border-foreground/20 bg-foreground/10">
-              <span className="font-sans text-2xl font-bold text-foreground">Y</span>
+              <span className="font-sans text-2xl font-bold text-foreground">
+                <Image src="/yassinoxLogo.svg" alt="Yassine Ifguisse" width={64} height={64} />
+              </span>
             </div>
             <div>
               <h3 className="font-sans text-xl font-semibold text-foreground">Yassine Ifguisse</h3>
