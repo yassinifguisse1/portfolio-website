@@ -214,23 +214,38 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {(() => {
           // Extract FAQs from content (look for "## Frequently Asked Questions" section)
-          const faqMatch = post.content.match(/## Frequently Asked Questions([\s\S]*?)(?=##|$)/)
+          const faqMatch = post.content.match(/##\s*Frequently\s+Asked\s+Questions([\s\S]*?)(?=##|$)/i)
           if (!faqMatch) return null
 
           const faqContent = faqMatch[1]
           const faqItems: Array<{ question: string; answer: string }> = []
           
           // Extract Q&A pairs (### Question followed by answer)
-          const qaMatches = faqContent.matchAll(/### (.+?)\n\n([\s\S]*?)(?=###|$)/g)
+          // More flexible regex to handle various markdown formats
+          const qaMatches = faqContent.matchAll(/###\s+(.+?)\n\n([\s\S]*?)(?=###|##|$)/g)
           for (const match of qaMatches) {
             const question = match[1].trim()
-            const answer = match[2].trim().replace(/\n/g, ' ').substring(0, 500) // Limit answer length
-            if (question && answer) {
+            // Clean answer: remove markdown formatting, preserve content
+            let answer = match[2]
+              .trim()
+              .replace(/^\*\*/g, '') // Remove bold at start
+              .replace(/\*\*$/g, '') // Remove bold at end
+              .replace(/\n+/g, ' ') // Replace newlines with spaces
+              .replace(/\s+/g, ' ') // Normalize whitespace
+              .trim()
+            
+            // Ensure answer is at least 20 characters and not empty
+            if (question && answer && answer.length >= 20) {
+              // Don't truncate - Google prefers full answers (up to reasonable limit)
+              if (answer.length > 5000) {
+                answer = answer.substring(0, 4997) + '...'
+              }
               faqItems.push({ question, answer })
             }
           }
 
-          if (faqItems.length === 0) return null
+          // Google requires at least 2 FAQs for FAQPage schema
+          if (faqItems.length < 2) return null
 
           return (
             <script
