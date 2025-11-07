@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 
-export function useReveal(threshold = 0.3) {
-  const ref = useRef<HTMLElement>(null)
+export function useReveal<T extends HTMLElement = HTMLElement>(threshold = 0.3) {
+  const ref = useRef<T>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {

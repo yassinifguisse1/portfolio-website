@@ -7,7 +7,7 @@ import { Calendar, Clock, ArrowRight } from "lucide-react"
 
 export default function BlogPage() {
   const posts = getAllBlogPosts()
-  const { ref, isVisible } = useReveal(0.2)
+  const { ref, isVisible } = useReveal<HTMLDivElement>(0.2)
 
   return (
     <main className="relative min-h-screen w-full bg-background">
