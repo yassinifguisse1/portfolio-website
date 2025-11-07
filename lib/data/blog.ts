@@ -128,7 +128,7 @@ Absolutely. Next.js is excellent for e-commerce with features like static genera
 
 Next.js continues to evolve, providing developers with the tools they need to build modern, performant web applications. Whether you're building a simple blog or a complex SaaS application like the ones I've shipped, Next.js has you covered.
 
-**Ready to build your Next.js application?** [Book a 15-minute consultation call](/contact) to discuss your project, or [view my services](/services) to see how I can help you ship faster.
+**Ready to build your Next.js application?** [Book a 15-minute consultation call](/#contact) to discuss your project, or [view my services](/#services) to see how I can help you ship faster.
     `,
     author: 'Yassine Ifguisse',
     date: '2025-01-15',
@@ -261,7 +261,7 @@ Code splitting helps with initial load time but can increase navigation time. Ba
 
 By implementing these techniques, you can significantly improve your React application's performance and provide a better user experience. These optimizations have helped me ship faster, more efficient applications.
 
-**Need help optimizing your React application?** [Book a consultation call](/contact) to discuss performance improvements, or [view my services](/services) for custom React development.
+**Need help optimizing your React application?** [Book a consultation call](/#contact) to discuss performance improvements, or [view my services](/#services) for custom React development.
     `,
     author: 'Yassine Ifguisse',
     date: '2025-01-10',
@@ -408,7 +408,7 @@ Yes, use \`unknown\` instead. If you must use \`any\`, document why and consider
 
 Following these TypeScript best practices will help you write more maintainable, type-safe code that's easier to debug and refactor. These practices have helped me ship more reliable applications with fewer runtime errors.
 
-**Need help implementing TypeScript in your project?** [Book a consultation call](/contact) to discuss your TypeScript strategy, or [view my services](/services) for TypeScript development support.
+**Need help implementing TypeScript in your project?** [Book a consultation call](/#contact) to discuss your TypeScript strategy, or [view my services](/#services) for TypeScript development support.
     `,
     author: 'Yassine Ifguisse',
     date: '2025-01-05',

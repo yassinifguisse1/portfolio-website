@@ -8,6 +8,7 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
 
   return (
     <section
+      id="about"
       ref={ref}
       className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}

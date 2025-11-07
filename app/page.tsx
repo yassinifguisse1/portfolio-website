@@ -50,6 +50,8 @@ export default function Home() {
     }
   }, [])
 
+  const sectionNames = ["home", "work", "services", "about", "contact"]
+  
   const scrollToSection = (index: number) => {
     if (scrollContainerRef.current) {
       const sectionWidth = scrollContainerRef.current.offsetWidth
@@ -58,8 +60,39 @@ export default function Home() {
         behavior: "smooth",
       })
       setCurrentSection(index)
+      // Update URL hash without scrolling
+      const hash = sectionNames[index]
+      window.history.pushState(null, "", `/#${hash}`)
     }
   }
+
+  // Handle hash navigation on page load and hash changes
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1) // Remove #
+      const sectionIndex = sectionNames.indexOf(hash)
+      if (sectionIndex !== -1 && scrollContainerRef.current) {
+        const sectionWidth = scrollContainerRef.current.offsetWidth
+        scrollContainerRef.current.scrollTo({
+          left: sectionWidth * sectionIndex,
+          behavior: "smooth",
+        })
+        setCurrentSection(sectionIndex)
+      }
+    }
+
+    // Check hash on initial load (with a small delay to ensure scroll container is ready)
+    if (window.location.hash) {
+      setTimeout(() => {
+        handleHashChange()
+      }, 300)
+    }
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange)
+    return () => window.removeEventListener("hashchange", handleHashChange)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {
@@ -158,6 +191,9 @@ export default function Home() {
 
         if (newSection !== currentSection && newSection >= 0 && newSection <= 4) {
           setCurrentSection(newSection)
+          // Update URL hash when scrolling manually
+          const hash = sectionNames[newSection]
+          window.history.replaceState(null, "", `/#${hash}`)
         }
 
         scrollThrottleRef.current = undefined
@@ -240,22 +276,29 @@ export default function Home() {
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Home", "Work", "Services", "About", "Contact"].map((item, index) => (
-            <button
-              key={item}
-              onClick={() => scrollToSection(index)}
-              className={`group relative font-sans text-sm font-medium transition-colors ${
-                currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
-              }`}
-            >
-              {item}
-              <span
-                className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${
-                  currentSection === index ? "w-full" : "w-0 group-hover:w-full"
+          {["Home", "Work", "Services", "About", "Contact"].map((item, index) => {
+            const sectionHash = sectionNames[index]
+            return (
+              <a
+                key={item}
+                href={`#${sectionHash}`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  scrollToSection(index)
+                }}
+                className={`group relative font-sans text-sm font-medium transition-colors ${
+                  currentSection === index ? "text-foreground" : "text-foreground/80 hover:text-foreground"
                 }`}
-              />
-            </button>
-          ))}
+              >
+                {item}
+                <span
+                  className={`absolute -bottom-1 left-0 h-px bg-foreground transition-all duration-300 ${
+                    currentSection === index ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </a>
+            )
+          })}
           <a
             href="/blog"
             className="group relative font-sans text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
@@ -265,7 +308,10 @@ export default function Home() {
           </a>
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
+        <MagneticButton 
+          variant="secondary" 
+          onClick={() => scrollToSection(4)}
+        >
           Get Started
         </MagneticButton>
       </nav>
@@ -284,7 +330,7 @@ export default function Home() {
         }}
       >
         {/* Hero Section */}
-        <section className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-20 pt-24 md:px-12 md:pb-24" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 5rem)' }}>
+        <section id="home" className="flex min-h-screen w-screen shrink-0 flex-col justify-end px-6 pb-20 pt-24 md:px-12 md:pb-24" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 5rem)' }}>
           <div className="max-w-3xl">
             <div className="mb-4 inline-block animate-in fade-in slide-in-from-bottom-4 rounded-full border border-foreground/20 bg-foreground/15 px-4 py-1.5 backdrop-blur-md duration-700">
               <p className="font-mono text-xs text-foreground/90">Software Engineer</p>
