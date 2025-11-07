@@ -11,6 +11,23 @@ export default function BlogPage() {
 
   return (
     <main className="relative min-h-screen w-full bg-background">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "Yassine Ifguisse Blog",
+            url: "https://yassinox.site/blog",
+            description: "Thoughts, tutorials, and insights on web development, Next.js, React, and TypeScript from Yassine Ifguisse.",
+            blogPost: posts.slice(0, 10).map((p) => ({
+              "@type": "BlogPosting",
+              headline: p.title,
+              url: `https://yassinox.site/blog/${p.slug}`,
+            })),
+          }),
+        }}
+      />
       <div className="mx-auto w-full max-w-7xl px-6 py-24 md:px-12 md:py-32">
         <div
           ref={ref}

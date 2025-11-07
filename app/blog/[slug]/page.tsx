@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.description,
       type: "article",
       url: postUrl,
-      publishedTime: post.date,
+      publishedTime: new Date(post.date).toISOString(),
       authors: [post.author],
       tags: post.tags,
       images: [
@@ -133,15 +133,15 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "BlogPosting",
-              headline: post.title,
+              headline: post.title.length > 110 ? post.title.substring(0, 107) + "..." : post.title,
               description: post.description,
               author: {
                 "@type": "Person",
                 name: "Yassine Ifguisse",
                 url: "https://yassinox.site",
               },
-              datePublished: post.date,
-              dateModified: post.date,
+              datePublished: new Date(post.date).toISOString(),
+              dateModified: new Date(post.date).toISOString(),
               mainEntityOfPage: {
                 "@type": "WebPage",
                 "@id": `https://yassinox.site/blog/${post.slug}`,
@@ -159,10 +159,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 logo: {
                   "@type": "ImageObject",
                   url: "https://yassinox.site/yassinoxLogo.svg",
+                  width: 512,
+                  height: 512,
                 },
               },
               articleSection: post.category,
               keywords: post.tags.join(", "),
+              wordCount: post.content.split(/\s+/).length,
             }),
           }}
         />
