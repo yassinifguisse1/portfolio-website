@@ -3,13 +3,14 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { Analytics } from "@vercel/analytics/react"
+import { CustomCursor } from "@/components/custom-cursor"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Yassine Ifguisse - Portfolio Website",
-  description: "A modern, shader-powered portfolio website showcasing my work as a Software Developer & Computer Engineering Graduate.",
+  title: "Yassine Ifguisse — Full-Stack Developer (Next.js, TypeScript, AI SaaS Developer)",
+  description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
   generator: "Yassine Ifguisse",
   keywords: [
     "Yassine Ifguisse",
@@ -31,19 +32,32 @@ export const metadata: Metadata = {
   creator: "Yassine Ifguisse",
   publisher: "Yassine Ifguisse",
   openGraph: {
-    title: "Yassine Ifguisse - Portfolio Website",
-    description: "A modern, shader-powered portfolio website showcasing my work as a Software Developer & Computer Engineering Graduate.",
+    title: "Yassine Ifguisse — Full-Stack Developer (Next.js, TypeScript, AI SaaS Developer)",
+    description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
+    images: [
+      {
+        url: "https://yassinox.site/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Yassine Ifguisse - Full-Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yassine Ifguisse - Portfolio Website",
-    description: "A modern, shader-powered portfolio website showcasing my work as a Software Developer & Computer Engineering Graduate.",
+    title: "Yassine Ifguisse — Full-Stack Developer (Next.js, TypeScript, AI SaaS Developer)",
+    description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
     images: ["https://yassinox.site/og-image.png"],
   },
   icons: {
-    icon: "/yassinoxLogo.svg",
-    shortcut: "/yassinoxLogo.svg",
-    apple: "/yassinoxLogo.svg",
+    icon: [
+      { url: "/yassinoxLogo.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [
+      { url: "/yassinoxLogo.svg", type: "image/svg+xml" },
+    ],
   },
   robots: {
     index: true,
@@ -68,6 +82,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+        <link rel="icon" href="https://yassinox.site/yassinoxLogo.svg" type="image/svg+xml" />
+        <link rel="icon" href="https://yassinox.site/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="https://yassinox.site/yassinoxLogo.svg" />
       </head>
       <body className={`font-sans antialiased`}>
         <script
@@ -100,6 +117,7 @@ export default function RootLayout({
             }),
           }}
         />
+        <CustomCursor />
         {children}
         <Analytics />
       </body>

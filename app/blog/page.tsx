@@ -3,6 +3,7 @@
 import { useReveal } from "@/hooks/use-reveal"
 import { getAllBlogPosts, type BlogPost } from "@/lib/data/blog"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { Calendar, Clock, ArrowRight } from "lucide-react"
 
 export default function BlogPage() {
@@ -62,10 +63,16 @@ function BlogCard({
   index: number
   isVisible: boolean
 }) {
+  const router = useRouter()
+
+  const handleCardClick = () => {
+    router.push(`/blog/${post.slug}`)
+  }
+
   return (
-    <Link
-      href={`/blog/${post.slug}`}
-      className={`group block transition-all duration-700 ${
+    <div
+      onClick={handleCardClick}
+      className={`group block cursor-pointer transition-all duration-700 ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"
       }`}
       style={{ transitionDelay: `${200 + index * 100}ms` }}
@@ -116,6 +123,6 @@ function BlogCard({
           <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
         </div>
       </article>
-    </Link>
+    </div>
   )
 }
