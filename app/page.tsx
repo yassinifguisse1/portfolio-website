@@ -9,6 +9,7 @@ import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
   const touchStartX = useRef(0)
   const shaderContainerRef = useRef<HTMLDivElement>(null)
   const scrollThrottleRef = useRef<number | undefined>(undefined)
+  const pathname = usePathname()
 
   useEffect(() => {
     const checkShaderReady = () => {
@@ -81,18 +83,27 @@ export default function Home() {
       }
     }
 
-    // Check hash on initial load (with a small delay to ensure scroll container is ready)
-    if (window.location.hash) {
-      setTimeout(() => {
+    // Check hash on initial load or when pathname changes (navigation from other pages)
+    const checkHash = () => {
+      if (window.location.hash && scrollContainerRef.current) {
         handleHashChange()
-      }, 300)
+      } else if (window.location.hash) {
+        // Retry if container not ready yet
+        setTimeout(checkHash, 100)
+      }
     }
+
+    // Initial check with delay
+    setTimeout(checkHash, 500)
 
     // Listen for hash changes
     window.addEventListener("hashchange", handleHashChange)
-    return () => window.removeEventListener("hashchange", handleHashChange)
+    
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [pathname])
 
   useEffect(() => {
     const handleTouchStart = (e: TouchEvent) => {

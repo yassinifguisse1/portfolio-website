@@ -1,3 +1,5 @@
+"use client"
+
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import Link from 'next/link'
@@ -30,8 +32,32 @@ export function BlogContent({ content }: BlogContentProps) {
             <p className="mb-4 leading-relaxed text-foreground/90" {...props} />
           ),
           // Links - use Next.js Link for internal links
-          a: ({ node, href, ...props }) => {
+          a: ({ node, href, children, ...props }) => {
             if (href?.startsWith('/')) {
+              // Handle hash links specially - navigate to home with hash
+              if (href.startsWith('/#')) {
+                return (
+                  <Link
+                    href={href}
+                    className="text-foreground/80 underline transition-colors hover:text-foreground"
+                    onClick={(e) => {
+                      // If we're not on the home page, let Next.js navigate first
+                      if (window.location.pathname !== '/') {
+                        // Next.js will handle navigation, hash will be processed by home page
+                        return
+                      }
+                      // If already on home page, prevent default and handle hash directly
+                      e.preventDefault()
+                      const hash = href.slice(1) // Remove leading /
+                      window.location.hash = hash
+                      window.dispatchEvent(new HashChangeEvent('hashchange'))
+                    }}
+                    {...props}
+                  >
+                    {children}
+                  </Link>
+                )
+              }
               return (
                 <Link href={href} className="text-foreground/80 underline transition-colors hover:text-foreground" {...props} />
               )
