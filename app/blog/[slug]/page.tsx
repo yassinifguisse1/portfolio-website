@@ -6,6 +6,8 @@ import { Calendar, Clock, ArrowLeft, Github, Linkedin, Mail, Instagram } from "l
 import { BlogContent } from "@/components/blog-content"
 import { MagneticButton } from "@/components/magnetic-button"
 import { TracingBeam } from "@/components/ui/tracing-beam"
+import { TableOfContents } from "@/components/table-of-contents"
+import { extractH2Headings } from "@/lib/utils/toc"
 import Image from "next/image"
 
 interface BlogPostPageProps {
@@ -75,7 +77,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <main className="relative min-h-screen w-full bg-background">
-      <article className="mx-auto w-full max-w-4xl px-6 py-24 md:px-12 md:py-32">
+      <article className="mx-auto w-full max-w-7xl px-6 py-24 md:px-12 md:py-32 lg:px-16">
         <Link
           href="/blog"
           className="mb-8 inline-flex items-center gap-2 font-mono text-sm text-foreground/60 transition-colors hover:text-foreground/80"
@@ -84,20 +86,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <span>Back to blog</span>
         </Link>
 
-        <div className="mb-8">
-          <div className="mb-4 inline-block rounded-full border border-foreground/20 bg-foreground/10 px-4 py-1.5">
+        <div className="mb-12">
+          <div className="mb-6 inline-block rounded-full border border-foreground/20 bg-foreground/10 px-4 py-1.5">
             <span className="font-mono text-xs text-foreground/80">{post.category}</span>
           </div>
 
-          <h1 className="mb-4 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <h1 className="mb-6 font-sans text-4xl font-light leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl xl:text-7xl">
             {post.title}
           </h1>
 
-          <p className="mb-6 text-lg leading-relaxed text-foreground/90 md:text-xl">
+          <p className="mb-8 text-lg leading-relaxed text-foreground/90 md:text-xl lg:text-2xl max-w-4xl">
             {post.description}
           </p>
 
-          <div className="flex flex-wrap items-center gap-6 text-sm text-foreground/60">
+          <div className="mb-8 flex flex-wrap items-center gap-6 text-sm text-foreground/60 md:text-base">
             <div className="flex items-center gap-2">
               <span className="font-mono">{post.author}</span>
             </div>
@@ -117,7 +119,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             {post.tags.map((tag) => (
               <span
                 key={tag}
@@ -275,7 +277,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           )
         })()}
 
-        <nav className="mb-8 flex items-center gap-2 font-mono text-sm text-foreground/60">
+        <nav className="mb-12 flex items-center gap-2 font-mono text-sm text-foreground/60">
           <Link href="/" className="transition-colors hover:text-foreground/80">
             Home
           </Link>
@@ -287,9 +289,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <span className="text-foreground/40">{post.title}</span>
         </nav>
 
-        <TracingBeam>
-          <div className="prose prose-invert max-w-none">
-            <BlogContent content={post.content} />
+        <TracingBeam className="relative w-full">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[280px_1fr] xl:grid-cols-[320px_1fr]">
+            {/* Table of Contents - Desktop only */}
+            <TableOfContents items={extractH2Headings(post.content)} />
+
+            {/* Main Content */}
+            <div className="min-w-0">
+              <div className="prose prose-invert prose-lg max-w-none">
+                <BlogContent content={post.content} />
+              </div>
+            </div>
           </div>
         </TracingBeam>
 
