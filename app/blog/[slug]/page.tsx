@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Calendar, Clock, ArrowLeft, Github, Linkedin, Mail, Instagram } from "lucide-react"
 import { BlogContent } from "@/components/blog-content"
 import { MagneticButton } from "@/components/magnetic-button"
+import { TracingBeam } from "@/components/ui/tracing-beam"
 import Image from "next/image"
 
 interface BlogPostPageProps {
@@ -286,9 +287,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <span className="text-foreground/40">{post.title}</span>
         </nav>
 
-        <div className="prose prose-invert max-w-none">
-          <BlogContent content={post.content} />
-        </div>
+        <TracingBeam>
+          <div className="prose prose-invert max-w-none">
+            <BlogContent content={post.content} />
+          </div>
+        </TracingBeam>
 
         {/* Internal Links Section */}
         <div className="my-12 flex flex-wrap gap-4 border-t border-foreground/10 pt-8">

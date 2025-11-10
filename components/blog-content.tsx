@@ -2,6 +2,8 @@
 
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import Link from 'next/link'
 
 interface BlogContentProps {
@@ -82,8 +84,50 @@ export function BlogContent({ content }: BlogContentProps) {
           li: ({ node, ...props }) => (
             <li className="leading-relaxed" {...props} />
           ),
-          // Code blocks
+          // Code blocks with syntax highlighting
+          pre: ({ node, children, ...props }: any) => {
+            // react-markdown wraps code blocks in <pre><code className="language-xxx">
+            if (children && typeof children === 'object' && 'props' in children) {
+              const codeProps = children.props
+              const className = codeProps?.className || ''
+              const match = /language-(\w+)/.exec(className)
+              const language = match ? match[1] : ''
+              
+              if (language || className.includes('language-')) {
+                // This is a code block with language, use SyntaxHighlighter
+                return (
+                  <SyntaxHighlighter
+                    language={language || 'text'}
+                    style={vscDarkPlus}
+                    customStyle={{
+                      margin: '1.5rem 0',
+                      borderRadius: '0.5rem',
+                      padding: '1rem',
+                      fontSize: '0.875rem',
+                      lineHeight: '1.5',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                    }}
+                    PreTag="div"
+                    {...props}
+                  >
+                    {String(codeProps?.children || '').replace(/\n$/, '')}
+                  </SyntaxHighlighter>
+                )
+              }
+            }
+            // Fallback for other pre tags
+            return (
+              <pre
+                className="my-6 overflow-x-auto rounded-lg border border-foreground/20 bg-foreground/5 p-4 font-mono text-sm"
+                {...props}
+              >
+                {children}
+              </pre>
+            )
+          },
           code: ({ node, inline, className, children, ...props }: any) => {
+            // Inline code (not in a pre block)
             if (inline) {
               return (
                 <code
@@ -94,18 +138,13 @@ export function BlogContent({ content }: BlogContentProps) {
                 </code>
               )
             }
+            // Code inside pre (handled by pre component above)
             return (
               <code className={className} {...props}>
                 {children}
               </code>
             )
           },
-          pre: ({ node, ...props }) => (
-            <pre
-              className="my-6 overflow-x-auto rounded-lg border border-foreground/20 bg-foreground/5 p-4 font-mono text-sm"
-              {...props}
-            />
-          ),
           // Blockquotes
           blockquote: ({ node, ...props }) => (
             <blockquote
