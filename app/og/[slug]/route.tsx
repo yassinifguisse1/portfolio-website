@@ -21,8 +21,10 @@ export async function GET(
     }
 
     const post = getBlogPost(slug)
+    
     if (!post) {
-      return new Response('Post not found', { status: 404 })
+      console.error(`OG Image: Post not found for slug: ${slug}`)
+      return new Response(`Post not found: ${slug}`, { status: 404 })
     }
 
     return new ImageResponse(
@@ -105,8 +107,8 @@ export async function GET(
       }
     )
   } catch (e: any) {
-    console.log(`${e.message}`)
-    return new Response(`Failed to generate the image`, {
+    console.error('OG Image generation error:', e.message, e.stack)
+    return new Response(`Failed to generate the image: ${e.message}`, {
       status: 500,
     })
   }
