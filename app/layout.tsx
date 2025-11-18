@@ -86,7 +86,7 @@ export default function RootLayout({
         <link rel="icon" href="https://yassinox.site/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="https://yassinox.site/yassinoxLogo.svg" />
       </head>
-      <body className={`font-sans antialiased`}>
+      <body className={`font-sans antialiased`} suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
