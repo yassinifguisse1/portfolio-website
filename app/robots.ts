@@ -17,6 +17,8 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
     sitemap: `${baseUrl}/sitemap.xml`,
+    // Explicitly allow favicon and other static assets
+    host: baseUrl,
   }
 }
 
