@@ -51,8 +51,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: "/favicon.ico", sizes: "32x32", type: "image/x-icon" },
       { url: "/yassinoxLogo.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
     ],
     shortcut: "/favicon.ico",
     apple: [
@@ -82,9 +82,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-        <link rel="icon" href="https://yassinox.site/yassinoxLogo.svg" type="image/svg+xml" />
-        <link rel="icon" href="https://yassinox.site/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="https://yassinox.site/yassinoxLogo.svg" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/yassinoxLogo.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/yassinoxLogo.svg" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </head>
       <body className={`font-sans antialiased`} suppressHydrationWarning>
         <script
@@ -111,9 +112,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              name: "Yassine Ifguisse - Portfolio",
+              name: "Yassine Ifguisse — Full-Stack Developer",
               url: "https://yassinox.site",
-              description: "Software Developer & Computer Engineering Graduate portfolio showcasing modern web applications and development expertise.",
+              description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
             }),
           }}
         />
