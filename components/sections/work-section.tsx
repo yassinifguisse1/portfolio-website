@@ -5,6 +5,42 @@ import { useReveal } from "@/hooks/use-reveal"
 export function WorkSection() {
   const { ref, isVisible } = useReveal(0.3)
 
+  const projects = [
+    {
+      number: "01",
+      title: "DadOfSEO",
+      category: "SaaS Platform",
+      year: "2024",
+      direction: "left",
+      description: "AI-driven SEO content platform empowering businesses & bloggers to create high-impact articles in minutes.",
+      descriptionMobile: "AI-driven SEO content platform.",
+      technologies: "Next.js, Node.js, React, Tailwind CSS, Supabase, Prisma, Stripe, Vercel",
+      link: "https://dadofseo.com/"
+    },
+    {
+      number: "02",
+      title: "Amseel Cars",
+      category: "E-Commerce Platform",
+      year: "2025",
+      direction: "right",
+      description: "Premium car rental platform with real-time booking system and fleet management.",
+      descriptionMobile: "Premium car rental platform .",
+      technologies: "Next.js, Tailwind CSS, GSAP, Resend, Vercel",
+      link: "https://amseelcars.com/"
+    },
+    {
+      number: "03",
+      title: "iTA Groupe",
+      category: "Software Development",
+      year: "2025",
+      direction: "left",
+      description: "Professional software development company website with comprehensive digital solutions showcase.",
+      descriptionMobile: "Professional software development company ",
+      technologies: "Next.js, Tailwind CSS, Resend, Vercel",
+      link: "https://www.itagroupe.com/"
+    },
+  ]
+
   return (
     <section
       id="work"
@@ -12,6 +48,40 @@ export function WorkSection() {
       className="flex h-screen w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 "
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' , height: '100dvh' }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Featured Projects",
+            description: "Portfolio of web applications and software projects developed by Yassine Ifguisse",
+            itemListElement: projects.map((project, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              item: {
+                "@type": "SoftwareApplication",
+                name: project.title,
+                applicationCategory: project.category,
+                operatingSystem: "Web",
+                description: project.description,
+                url: project.link,
+                creator: {
+                  "@type": "Person",
+                  name: "Yassine Ifguisse",
+                  url: "https://www.yassinox.site",
+                },
+                offers: {
+                  "@type": "Offer",
+                  price: "0",
+                  priceCurrency: "USD",
+                },
+                softwareVersion: project.year,
+              },
+            })),
+          }),
+        }}
+      />
       <div className="mx-auto w-full max-w-7xl mb-6 md:mb-0">
         <div
           className={`mb-0 transition-all duration-700 md:mb-16 ${
@@ -25,41 +95,7 @@ export function WorkSection() {
         </div>
 
         <div className="space-y-0 md:space-y-8">
-          {[
-            {
-              number: "01",
-              title: "DadOfSEO",
-              category: "SaaS Platform",
-              year: "2024",
-              direction: "left",
-              description: "AI-driven SEO content platform empowering businesses & bloggers to create high-impact articles in minutes.",
-              descriptionMobile: "AI-driven SEO content platform.",
-              technologies: "Next.js, Node.js, React, Tailwind CSS, Supabase, Prisma, Stripe, Vercel",
-              link: "https://dadofseo.com/"
-            },
-            {
-              number: "02",
-              title: "Amseel Cars",
-              category: "E-Commerce Platform",
-              year: "2025",
-              direction: "right",
-              description: "Premium car rental platform with real-time booking system and fleet management.",
-              descriptionMobile: "Premium car rental platform .",
-              technologies: "Next.js, Tailwind CSS, GSAP, Resend, Vercel",
-              link: "https://amseelcars.com/"
-            },
-            {
-              number: "03",
-              title: "iTA Groupe",
-              category: "Software Development",
-              year: "2025",
-              direction: "left",
-              description: "Professional software development company website with comprehensive digital solutions showcase.",
-              descriptionMobile: "Professional software development company ",
-              technologies: "Next.js, Tailwind CSS, Resend, Vercel",
-              link: "https://www.itagroupe.com/"
-            },
-          ].map((project, i) => (
+          {projects.map((project, i) => (
             <ProjectCard key={i} project={project} index={i} isVisible={isVisible} />
           ))}
         </div>

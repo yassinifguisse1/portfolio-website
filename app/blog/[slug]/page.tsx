@@ -179,6 +179,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               articleSection: post.category,
               keywords: post.tags.join(", "),
               wordCount: post.content.split(/\s+/).length,
+              inLanguage: "en",
+              isAccessibleForFree: true,
             }),
           }}
         />
@@ -279,6 +281,65 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       "@type": "Answer",
                       text: faq.answer,
                     },
+                  })),
+                }),
+              }}
+            />
+          )
+        })()}
+
+        {(() => {
+          // Extract HowTo steps from content (look for numbered steps or "Step 1", "Step 2" patterns)
+          // This is a simple pattern - you can enhance it based on your content structure
+          const howToMatch = post.content.match(/##\s*How\s+to\s+[^\n]+/i) || 
+                            post.content.match(/##\s*Step[s]?\s+by\s+Step/i) ||
+                            post.content.match(/##\s*Tutorial/i)
+          
+          if (!howToMatch) return null
+
+          // Extract steps - look for numbered lists or step patterns
+          const stepPattern = /(?:^|\n)(?:\d+\.|Step\s+\d+[:\.]|###\s+Step\s+\d+)\s+(.+?)(?=\n(?:\d+\.|Step\s+\d+[:\.]|###\s+Step\s+\d+|\n##\s|$))/gi
+          const steps: Array<{ name: string; text: string }> = []
+          let stepMatch
+          
+          while ((stepMatch = stepPattern.exec(post.content)) !== null && steps.length < 20) {
+            const stepText = stepMatch[1]
+              .trim()
+              .replace(/\*\*(.+?)\*\*/g, '$1')
+              .replace(/\*(.+?)\*/g, '$1')
+              .replace(/\[(.+?)\]\(.+?\)/g, '$1')
+              .replace(/`(.+?)`/g, '$1')
+              .replace(/\n+/g, ' ')
+              .replace(/\s+/g, ' ')
+              .trim()
+            
+            if (stepText && stepText.length >= 20) {
+              // Extract step name (first sentence or first 100 chars)
+              const stepName = stepText.split('.')[0] || stepText.substring(0, 100)
+              steps.push({
+                name: stepName.length > 100 ? stepName.substring(0, 97) + '...' : stepName,
+                text: stepText.length > 500 ? stepText.substring(0, 497) + '...' : stepText,
+              })
+            }
+          }
+
+          // Google requires at least 2 steps for HowTo schema
+          if (steps.length < 2) return null
+
+          return (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "HowTo",
+                  name: post.title,
+                  description: post.description,
+                  step: steps.map((step, index) => ({
+                    "@type": "HowToStep",
+                    position: index + 1,
+                    name: step.name,
+                    text: step.text,
                   })),
                 }),
               }}

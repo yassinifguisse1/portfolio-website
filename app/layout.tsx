@@ -123,6 +123,57 @@ export default function RootLayout({
               name: "Yassine Ifguisse — Full-Stack Developer",
               url: "https://www.yassinox.site",
               description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
+              potentialAction: {
+                "@type": "SearchAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://www.yassinox.site/blog?q={search_term_string}",
+                },
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Yassine Ifguisse",
+              url: "https://www.yassinox.site",
+              image: "https://www.yassinox.site/yassinoxLogo.svg",
+              jobTitle: "Full-Stack Developer",
+              worksFor: {
+                "@type": "Organization",
+                name: "Yassine Ifguisse",
+              },
+              alumniOf: {
+                "@type": "EducationalOrganization",
+                name: "Computer Engineering",
+              },
+              knowsAbout: [
+                "Next.js",
+                "React",
+                "TypeScript",
+                "Web Development",
+                "SaaS Development",
+                "Full Stack Development",
+                "Node.js",
+                "AI Integration",
+              ],
+              sameAs: [
+                "https://github.com/yassinifguisse1",
+                "https://www.linkedin.com/in/yassineifguisse/",
+                "https://x.com/YIfguisse775",
+                "https://www.instagram.com/yassine_ifg/",
+                "https://www.upwork.com/freelancers/yassineifguisse",
+              ],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Warsaw",
+                addressCountry: "PL",
+              },
             }),
           }}
         />

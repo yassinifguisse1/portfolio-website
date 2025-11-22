@@ -5,6 +5,29 @@ import { useReveal } from "@/hooks/use-reveal"
 export function ServicesSection() {
   const { ref, isVisible } = useReveal(0.3)
 
+  const services = [
+    {
+      title: "Software Development",
+      description: "Building complete web applications from frontend to backend using React, Next.js, Node.js, and Express.js",
+      direction: "top",
+    },
+    {
+      title: "Custom Software Development",
+      description: "Creating tailored solutions for startups, businesses, and agencies across various industries",
+      direction: "right",
+    },
+    {
+      title: "SaaS & E-commerce Platforms",
+      description: "Developing scalable SaaS platforms and e-commerce solutions with modern tech stacks",
+      direction: "left",
+    },
+    {
+      title: "Performance & Deployment",
+      description: "Optimizing applications for speed and handling deployment and DevOps processes",
+      direction: "bottom",
+    },
+  ]
+
   return (
     <section
       id="services"
@@ -12,6 +35,47 @@ export function ServicesSection() {
       className="flex h-100dvh w-screen shrink-0 snap-start items-center px-6 pt-20 md:px-12 md:pt-0 lg:px-16 "
       style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 2rem)' }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            serviceType: "Web Development Services",
+            provider: {
+              "@type": "Person",
+              name: "Yassine Ifguisse",
+              url: "https://www.yassinox.site",
+            },
+            areaServed: {
+              "@type": "Country",
+              name: "Worldwide",
+            },
+            availableChannel: {
+              "@type": "ServiceChannel",
+              serviceUrl: "https://www.yassinox.site/#contact",
+              serviceType: "Online",
+            },
+            offers: {
+              "@type": "Offer",
+              description: "Full-stack web development services including software development, custom solutions, SaaS platforms, and performance optimization",
+            },
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: "Web Development Services",
+              itemListElement: services.map((service, index) => ({
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: service.title,
+                  description: service.description,
+                },
+                position: index + 1,
+              })),
+            },
+          }),
+        }}
+      />
       <div className="mx-auto w-full max-w-7xl">
         <div
           className={`mb-4 transition-all duration-700 md:mb-16 ${
@@ -25,28 +89,7 @@ export function ServicesSection() {
         </div>
 
         <div className="grid gap-3 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
-          {[
-            {
-              title: "Software Development",
-              description: "Building complete web applications from frontend to backend using React, Next.js, Node.js, and Express.js",
-              direction: "top",
-            },
-            {
-              title: "Custom Software Development",
-              description: "Creating tailored solutions for startups, businesses, and agencies across various industries",
-              direction: "right",
-            },
-            {
-              title: "SaaS & E-commerce Platforms",
-              description: "Developing scalable SaaS platforms and e-commerce solutions with modern tech stacks",
-              direction: "left",
-            },
-            {
-              title: "Performance & Deployment",
-              description: "Optimizing applications for speed and handling deployment and DevOps processes",
-              direction: "bottom",
-            },
-          ].map((service, i) => (
+          {services.map((service, i) => (
             <ServiceCard key={i} service={service} index={i} isVisible={isVisible} />
           ))}
         </div>
