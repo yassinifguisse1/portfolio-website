@@ -87,6 +87,13 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/yassinoxLogo.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.webmanifest" />
+        {/* RSS Feed for AI and Feed Readers */}
+        <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+        {/* AI/LLM Discovery */}
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt - AI Content Guide" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full - Complete Content Index" />
+        <meta name="citation_author" content="Yassine Ifguisse" />
+        <meta name="citation_publication_date" content="2025-01-15" />
       </head>
       <body className={`font-sans antialiased`} suppressHydrationWarning>
         <script

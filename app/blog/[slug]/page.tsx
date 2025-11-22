@@ -64,6 +64,15 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       description: post.description,
       images: [ogImage],
     },
+    // AI/LLM friendly metadata
+    other: {
+      "citation_author": post.author,
+      "citation_publication_date": post.date,
+      "citation_title": post.title,
+      "citation_url": postUrl,
+      "article:category": post.category,
+      "article:tag": post.tags.join(", "),
+    },
   }
 }
 
