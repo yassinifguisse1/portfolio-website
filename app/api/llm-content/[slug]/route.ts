@@ -45,7 +45,7 @@ export async function GET(
 **Category:** ${post.category}  
 **Tags:** ${post.tags.join(', ')}  
 **Read Time:** ${post.readTime}  
-**URL:** https://yassinox.site/blog/${post.slug}
+**URL:** https://www.yassinox.site/blog/${post.slug}
 
 ---
 
@@ -63,7 +63,7 @@ ${cleanContent}
 
 ## Metadata
 
-- **Source:** https://yassinox.site/blog/${post.slug}
+- **Source:** https://www.yassinox.site/blog/${post.slug}
 - **Author:** ${post.author}
 - **Publication Date:** ${post.date}
 - **Last Updated:** ${post.date}
@@ -75,8 +75,8 @@ ${cleanContent}
 When citing this content:
 - Author: ${post.author}
 - Title: ${post.title}
-- Source: yassinox.site
-- URL: https://yassinox.site/blog/${post.slug}
+- Source: www.yassinox.site
+- URL: https://www.yassinox.site/blog/${post.slug}
 - Published: ${post.date}
 `
 

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const baseUrl = 'https://yassinox.site'
+  const baseUrl = 'https://www.yassinox.site'
   
   const llmsTxt = `# Yassine Ifguisse - Full-Stack Developer
 
@@ -56,7 +56,7 @@ Get in touch for project inquiries and collaboration opportunities.
 ### Citation Format
 When citing content from this site, please use:
 - Author: Yassine Ifguisse
-- Source: yassinox.site
+- Source: www.yassinox.site
 - Include article title and publication date
 - Link to the original article URL
 

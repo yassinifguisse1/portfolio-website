@@ -31,8 +31,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     }
   }
 
-  const postUrl = `https://yassinox.site/blog/${post.slug}`
-  const ogImage = `https://yassinox.site/og/${post.slug}.png`
+  const postUrl = `https://www.yassinox.site/blog/${post.slug}`
+  const ogImage = `https://www.yassinox.site/og/${post.slug}.png`
 
   return {
     title: `${post.title} | Yassine Ifguisse`,
@@ -151,27 +151,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               author: {
                 "@type": "Person",
                 name: "Yassine Ifguisse",
-                url: "https://yassinox.site",
+                url: "https://www.yassinox.site",
               },
               datePublished: new Date(post.date).toISOString(),
               dateModified: new Date(post.date).toISOString(),
               mainEntityOfPage: {
                 "@type": "WebPage",
-                "@id": `https://yassinox.site/blog/${post.slug}`,
+                "@id": `https://www.yassinox.site/blog/${post.slug}`,
               },
               image: {
                 "@type": "ImageObject",
-                url: `https://yassinox.site/og/${post.slug}.png`,
+                url: `https://www.yassinox.site/og/${post.slug}.png`,
                 width: 1200,
                 height: 630,
               },
               publisher: {
                 "@type": "Organization",
                 name: "Yassine Ifguisse",
-                url: "https://yassinox.site",
+                url: "https://www.yassinox.site",
                 logo: {
                   "@type": "ImageObject",
-                  url: "https://yassinox.site/yassinoxLogo.svg",
+                  url: "https://www.yassinox.site/yassinoxLogo.svg",
                   width: 512,
                   height: 512,
                 },
@@ -196,7 +196,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   name: "Home",
                   item: {
                     "@type": "WebPage",
-                    "@id": "https://yassinox.site",
+                    "@id": "https://www.yassinox.site",
                     name: "Home",
                   },
                 },
@@ -206,7 +206,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   name: "Blog",
                   item: {
                     "@type": "WebPage",
-                    "@id": "https://yassinox.site/blog",
+                    "@id": "https://www.yassinox.site/blog",
                     name: "Blog",
                   },
                 },
@@ -216,7 +216,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   name: post.title,
                   item: {
                     "@type": "WebPage",
-                    "@id": `https://yassinox.site/blog/${post.slug}`,
+                    "@id": `https://www.yassinox.site/blog/${post.slug}`,
                     name: post.title,
                   },
                 },

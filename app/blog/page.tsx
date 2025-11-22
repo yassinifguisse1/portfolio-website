@@ -19,12 +19,12 @@ export default function BlogPage() {
             "@context": "https://schema.org",
             "@type": "Blog",
             name: "Yassine Ifguisse Blog",
-            url: "https://yassinox.site/blog",
+            url: "https://www.yassinox.site/blog",
             description: "Thoughts, tutorials, and insights on web development, Next.js, React, and TypeScript from Yassine Ifguisse.",
             blogPost: posts.slice(0, 10).map((p) => ({
               "@type": "BlogPosting",
               headline: p.title,
-              url: `https://yassinox.site/blog/${p.slug}`,
+              url: `https://www.yassinox.site/blog/${p.slug}`,
             })),
           }),
         }}

@@ -4,16 +4,16 @@ export const metadata: Metadata = {
   title: "Blog | Yassine Ifguisse - Web Development Insights",
   description: "Thoughts, tutorials, and insights on web development, Next.js, React, TypeScript, and modern software engineering practices.",
   alternates: {
-    canonical: "https://yassinox.site/blog",
+    canonical: "https://www.yassinox.site/blog",
   },
   openGraph: {
     title: "Blog | Yassine Ifguisse",
     description: "Thoughts, tutorials, and insights on web development, Next.js, React, TypeScript, and modern software engineering practices.",
-    url: "https://yassinox.site/blog",
+    url: "https://www.yassinox.site/blog",
     type: "website",
     images: [
       {
-        url: "https://yassinox.site/og-image.png",
+        url: "https://www.yassinox.site/og-image.png",
         width: 1200,
         height: 630,
         alt: "Yassine Ifguisse Blog",

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { getAllBlogPosts } from '@/lib/data/blog'
 
 export async function GET() {
-  const baseUrl = 'https://yassinox.site'
+  const baseUrl = 'https://www.yassinox.site'
   const blogPosts = getAllBlogPosts()
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

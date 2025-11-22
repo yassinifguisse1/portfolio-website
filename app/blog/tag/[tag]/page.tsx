@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
     }
   }
 
-  const tagUrl = `https://yassinox.site/blog/tag/${tag}`
+  const tagUrl = `https://www.yassinox.site/blog/tag/${tag}`
 
   return {
     title: `${matchedTag} Posts | Yassine Ifguisse Blog`,
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
       type: "website",
       images: [
         {
-          url: "https://yassinox.site/og-image.png",
+          url: "https://www.yassinox.site/og-image.png",
           width: 1200,
           height: 630,
           alt: `${matchedTag} Posts`,
@@ -92,7 +92,7 @@ export default async function TagPage({ params }: TagPageProps) {
     notFound()
   }
 
-  const tagUrl = `https://yassinox.site/blog/tag/${tag}`
+  const tagUrl = `https://www.yassinox.site/blog/tag/${tag}`
 
   return (
     <main className="relative min-h-screen w-full bg-background">
@@ -114,7 +114,7 @@ export default async function TagPage({ params }: TagPageProps) {
                 item: {
                   "@type": "BlogPosting",
                   headline: post.title,
-                  url: `https://yassinox.site/blog/${post.slug}`,
+                  url: `https://www.yassinox.site/blog/${post.slug}`,
                 },
               })),
             },

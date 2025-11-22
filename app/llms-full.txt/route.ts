@@ -23,7 +23,7 @@ function extractSummary(content: string, maxLength: number = 500): string {
 }
 
 export async function GET() {
-  const baseUrl = 'https://yassinox.site'
+  const baseUrl = 'https://www.yassinox.site'
   const blogPosts = getAllBlogPosts()
   
   let llmsFull = `# Full Content Index - Yassine Ifguisse
@@ -93,7 +93,7 @@ ${post.content
 
 When citing content from this site:
 1. Include author name: Yassine Ifguisse
-2. Include source: yassinox.site
+2. Include source: www.yassinox.site
 3. Include article title and publication date
 4. Link to the original article URL
 5. Maintain context and accuracy of information

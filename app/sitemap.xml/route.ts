@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 
 export async function GET() {
-  const baseUrl = 'https://yassinox.site'
+  const baseUrl = 'https://www.yassinox.site'
   const currentDate = new Date().toISOString().split('T')[0]
 
   const sitemapIndex = `<?xml version="1.0" encoding="UTF-8"?>

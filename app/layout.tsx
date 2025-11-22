@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Frontend Developer",
     "Backend Developer",
   ],
-  authors: [{ name: "Yassine Ifguisse", url: "https://yassinox.site" }],
+  authors: [{ name: "Yassine Ifguisse", url: "https://www.yassinox.site" }],
   creator: "Yassine Ifguisse",
   publisher: "Yassine Ifguisse",
   openGraph: {
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
     images: [
       {
-        url: "https://yassinox.site/og-image.png",
+        url: "https://www.yassinox.site/og-image.png",
         width: 1200,
         height: 630,
         alt: "Yassine Ifguisse - Full-Stack Developer",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yassine Ifguisse — Full-Stack Developer (Next.js, TypeScript, AI SaaS Developer)",
     description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
-    images: ["https://yassinox.site/og-image.png"],
+    images: ["https://www.yassinox.site/og-image.png"],
   },
   icons: {
     icon: [
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://yassinox.site",
+    canonical: "https://www.yassinox.site",
   },
-  metadataBase: new URL("https://yassinox.site"),
+  metadataBase: new URL("https://www.yassinox.site"),
 }
 
 export default function RootLayout({
@@ -103,8 +103,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Yassine Ifguisse",
-              url: "https://yassinox.site",
-              logo: "https://yassinox.site/yassinoxLogo.svg",
+              url: "https://www.yassinox.site",
+              logo: "https://www.yassinox.site/yassinoxLogo.svg",
               sameAs: [
                 "https://github.com/yassinifguisse1",
                 "https://www.linkedin.com/in/yassineifguisse/",
@@ -121,7 +121,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Yassine Ifguisse — Full-Stack Developer",
-              url: "https://yassinox.site",
+              url: "https://www.yassinox.site",
               description: "Full-stack developer building fast Next.js/React apps, AI-powered SaaS, and modern web applications. Available remote from Warsaw.",
             }),
           }}
